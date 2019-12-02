@@ -1,4 +1,4 @@
-FROM node:8.12.0-stretch
+FROM node:10.17.0-stretch
 
 WORKDIR /app
 
@@ -9,17 +9,17 @@ RUN echo "deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/3.6 main" >
 # Install Mongo, python and libpq
 RUN apt-get update
 RUN apt-get install -y mongodb-org-tools mongodb-org-shell \
-        python-pip python-dev libffi-dev libssl-dev libpq5 libpq-dev \
+        python3-pip python-dev libffi-dev libssl-dev libpq5 libpq-dev \
         && apt-get -y --purge remove python-cffi \
-        && pip install --upgrade cffi setuptools
+        && pip3 install --upgrade cffi setuptools
 
 # Install Ansible
-RUN easy_install -U pip && pip install 'ansible>=2.5,<2.6'
+RUN pip3 install 'ansible>=2.8,<2.9'
 
 # Install modern Ruby
-RUN cd /tmp && curl -LO https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.3.tar.gz && \
-        tar -xf ruby-2.6.3.tar.gz && cd ruby-2.6.3 && ./configure
-RUN cd /tmp/ruby-2.6.3 && make && make install
+RUN cd /tmp && curl -LO https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.5.tar.gz && \
+        tar -xf ruby-2.6.5.tar.gz && cd ruby-2.6.5 && ./configure
+RUN cd /tmp/ruby-2.6.5 && make && make install
 
 # Install Dhall
 RUN curl -LO https://github.com/dhall-lang/dhall-haskell/releases/download/1.21.0/dhall-json-1.2.7-x86_64-linux.tar.bz2 && \
