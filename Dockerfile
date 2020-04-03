@@ -1,10 +1,10 @@
-FROM node:10.17.0-stretch
+FROM node:13.12.0-stretch
 
 WORKDIR /app
 
-# Install Mongo repository 3.6
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
-RUN echo "deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/3.6 main" > /etc/apt/sources.list.d/mongodb-org-3.6.list
+# Install Mongo repository 4.0
+RUN curl -sSL https://www.mongodb.org/static/pgp/server-4.0.asc | apt-key add -
+RUN echo "deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/4.0 main" | tee /etc/apt/sources.list.d/mongodb-org-4.0.list
 
 # Install Mongo, python and libpq
 RUN apt-get update
