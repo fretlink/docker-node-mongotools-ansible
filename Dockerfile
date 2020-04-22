@@ -17,11 +17,11 @@ RUN apt-get install -y mongodb-org-tools mongodb-org-shell \
 RUN pip3 install 'ansible>=2.8,<2.9'
 
 # Install modern Ruby
-RUN cd /tmp && curl -LO https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.5.tar.gz && \
-        tar -xf ruby-2.6.5.tar.gz && cd ruby-2.6.5 && ./configure
-RUN cd /tmp/ruby-2.6.5 && make && make install
+RUN cd /tmp && curl -LO https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.6.tar.gz && \
+        tar -xf ruby-2.6.6.tar.gz && cd ruby-2.6.6 && ./configure
+RUN cd /tmp/ruby-2.6.6 && make && make install
 
 # Install Dhall
-RUN curl -LO https://github.com/dhall-lang/dhall-haskell/releases/download/1.21.0/dhall-json-1.2.7-x86_64-linux.tar.bz2 && \
-  tar -xf dhall-json-1.2.7-x86_64-linux.tar.bz2 && \
+RUN curl -LO https://github.com/dhall-lang/dhall-haskell/releases/download/1.28.0/dhall-json-1.6.0-x86_64-linux.tar.bz2 && \
+  tar -xf dhall-json-1.6.0-x86_64-linux.tar.bz2 && \
   mv ./bin/dhall-to-json /usr/bin
